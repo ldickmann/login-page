@@ -2,27 +2,42 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ButtonStyled = styled.button`
-  background-color: var(--color-background-four);
+  background-color: ${(props) =>
+    props.bgColor || "var(--color-background-four)"};
   color: var(--color-text-one);
-  padding: 0.9375rem 3.125rem;
   border: none;
   border-radius: 0.625rem;
   cursor: pointer;
   font-family: var(--font-secondary);
-  font-size: 2rem;
+  font-size: ${(props) => props.fontSize || "2rem"};
   font-weight: 400;
   transition: background-color 0.3s;
+  width: ${(props) => props.width || "auto"};
+  height: ${(props) => props.height || "auto"};
   &:hover {
-    background-color: var(--color-background-three);
+    background-color: rgba(19, 103, 85, 0.68);
   }
 `;
 
-const Button = ({ children }) => {
-  return <ButtonStyled>{children}</ButtonStyled>;
+const Button = ({ children, bgColor, width, height, fontSize }) => {
+  return (
+    <ButtonStyled
+      bgColor={bgColor}
+      width={width}
+      height={height}
+      fontSize={fontSize}
+    >
+      {children}
+    </ButtonStyled>
+  );
 };
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
+  bgColor: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  fontSize: PropTypes.string,
 };
 
 export default Button;

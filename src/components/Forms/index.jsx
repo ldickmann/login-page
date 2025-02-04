@@ -15,11 +15,11 @@ const FormsLogin = styled.form`
 
 const InputForms = styled.input`
   border-radius: 0.625rem;
-  padding: 0.625rem;
-  padding-inline: 2rem;
   background-color: var(--color-background-three);
+  font-size: 1rem;
   border: none;
   outline: none;
+  padding: 0.5rem 2.5rem 0.5rem 4rem;
 `;
 
 const TitleForms = styled.h3`
@@ -33,13 +33,11 @@ const IconUser = styled(FaUserCircle)`
 
 const IconEmail = styled(MdOutlineEmail)`
   font-size: 1.5rem;
-  margin-right: 0.625rem;
   color: var(--color-background-two);
 `;
 
 const IconLock = styled(IoIosLock)`
   font-size: 1.5rem;
-  margin-right: 0.625rem;
   color: var(--color-background-two);
 `;
 
@@ -49,7 +47,7 @@ const InputWrapper = styled.div`
   background-color: var(--color-background-three);
   border-radius: 0.625rem;
   padding: 0.625rem;
-  width: 100%;
+  width: 95%;
 `;
 
 const ToggleIcon = styled.div`
@@ -67,6 +65,14 @@ const CheckboxWrapper = styled.div`
 
 const Checkbox = styled.input`
   margin-right: 0.625rem;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
 `;
 
 const Forms = () => {
@@ -98,7 +104,19 @@ const Forms = () => {
         <Checkbox type="checkbox" id="rememberMe" />
         <label htmlFor="rememberMe">Lembrar minha senha</label>
       </CheckboxWrapper>
-      <Button type="submit">Entrar</Button>
+      <ButtonGroup>
+        <Button type="submit" width="192px" height="69px">
+          Entrar
+        </Button>
+        <Button
+          bgColor="var(--color-background-five)"
+          width="332px"
+          height="32px"
+          fontSize="0.75rem"
+        >
+          Cadastrar
+        </Button>
+      </ButtonGroup>
     </FormsLogin>
   );
 };
