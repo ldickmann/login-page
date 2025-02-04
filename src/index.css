@@ -1,0 +1,20 @@
+:root {
+  --color-background-one: rgba(0, 0, 0, 0.88);
+
+  --color-background-two: rgba(0, 0, 0, 0.4);
+
+  --color-background-three: #bfa995;
+
+  --color-background-four: rgba(4, 127, 140, 0.68);
+
+  --color-text-one: #ffffff;
+  --color-text-two: #000000;
+
+  --font-primary: "Roboto", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
