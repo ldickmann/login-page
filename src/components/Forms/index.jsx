@@ -19,7 +19,8 @@ const InputForms = styled.input`
   font-size: 1rem;
   border: none;
   outline: none;
-  padding: 0.5rem 2.5rem 0.5rem 4rem;
+  width: 100%;
+  padding: 0.625rem;
 `;
 
 const TitleForms = styled.h3`
@@ -27,7 +28,7 @@ const TitleForms = styled.h3`
 `;
 
 const IconUser = styled(FaUserCircle)`
-  font-size: 8.5rem;
+  font-size: 10rem;
   color: var(--color-text-one);
 `;
 
@@ -67,6 +68,13 @@ const Checkbox = styled.input`
   margin-right: 0.625rem;
 `;
 
+const ContainerLembrarEsqueci = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,10 +108,20 @@ const Forms = () => {
           {showPassword ? <FaEyeSlash /> : <FaRegEye />}
         </ToggleIcon>
       </InputWrapper>
-      <CheckboxWrapper>
-        <Checkbox type="checkbox" id="rememberMe" />
-        <label htmlFor="rememberMe">Lembrar minha senha</label>
-      </CheckboxWrapper>
+      <ContainerLembrarEsqueci>
+        <CheckboxWrapper>
+          <Checkbox type="checkbox" id="rememberMe" />
+          <label htmlFor="rememberMe">Lembrar minha senha</label>
+        </CheckboxWrapper>
+        <Button
+          bgColor="transparent"
+          fontSize="0.875rem"
+          borderRadius="0.2rem"
+          onClick={() => alert("Esqueci minha senha")}
+        >
+          Esqueci minha senha
+        </Button>
+      </ContainerLembrarEsqueci>
       <ButtonGroup>
         <Button type="submit" width="192px" height="69px">
           Entrar
