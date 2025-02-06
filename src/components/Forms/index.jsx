@@ -1,8 +1,9 @@
 import { FaUserCircle, FaEyeSlash, FaRegEye } from "react-icons/fa";
+import { BsExclamationCircleFill } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoIosLock } from "react-icons/io";
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 import Button from "../Button";
 
 const FormsLogin = styled.form`
@@ -47,12 +48,13 @@ const InputWrapper = styled.div`
   align-items: center;
   background-color: var(--color-background-three);
   border-radius: 0.625rem;
-  padding: 0.625rem;
+  padding: 0.4rem;
   width: 95%;
+  position: relative;
+  border: ${({ $hasError }) => ($hasError ? "2px solid red" : "none")};
 `;
 
 const ToggleIcon = styled.div`
-  font-size: 1.2rem;
   cursor: pointer;
   color: var(--color-text-two);
 `;
@@ -83,24 +85,91 @@ const ButtonGroup = styled.div`
   gap: 1.25rem;
 `;
 
+const ErrorTooltip = styled.div`
+  position: absolute;
+  top: -35px;
+  right: 10px;
+  background: white;
+  color: red;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid red;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  display: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50px;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(255, 0, 0, 0.9) transparent transparent transparent;
+  }
+`;
+
+const ErrorIconWrapper = styled.div`
+  position: relative;
+  cursor: pointer;
+
+  &:hover ${ErrorTooltip} {
+    display: block;
+  }
+`;
+
 const Forms = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const validateEmail = () => {
+    if (!email) {
+      setError("Email is required");
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Valid email is required: exemplo@luksdev.com");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateEmail()) {
+      return;
+    }
+    alert("Login successful");
+  };
+
   return (
-    <FormsLogin>
+    <FormsLogin onSubmit={handleSubmit}>
       <IconUser />
-      <TitleForms>LOGIN</TitleForms>
-      <InputWrapper>
+      <TitleForms>WELCOME</TitleForms>
+      <InputWrapper $hasError={!!error}>
         <IconEmail />
         <InputForms
           type="text"
-          placeholder="Username or Email"
-          autoComplete="username"
+          placeholder="Email"
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={validateEmail}
         />
+        {error && (
+          <ErrorIconWrapper>
+            <BsExclamationCircleFill color="red" />
+            <ErrorTooltip>{error}</ErrorTooltip>
+          </ErrorIconWrapper>
+        )}
       </InputWrapper>
       <InputWrapper>
         <IconLock />
@@ -128,13 +197,13 @@ const Forms = () => {
         </Button>
       </ContainerLembrarEsqueci>
       <ButtonGroup>
-        <Button type="submit" width="192px" height="69px">
+        <Button type="submit" width="192px" height="59px">
           Login
         </Button>
         <Button
           bgColor="var(--color-background-five)"
           width="332px"
-          height="32px"
+          height="35px"
           fontSize="0.75rem"
         >
           Sign up
