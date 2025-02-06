@@ -96,13 +96,18 @@ const Forms = () => {
       <TitleForms>LOGIN</TitleForms>
       <InputWrapper>
         <IconEmail />
-        <InputForms type="text" placeholder="Username or Email" />
+        <InputForms
+          type="text"
+          placeholder="Username or Email"
+          autoComplete="username"
+        />
       </InputWrapper>
       <InputWrapper>
         <IconLock />
         <InputForms
           type={showPassword ? "text" : "password"}
           placeholder="Password"
+          autoComplete="current-password"
         />
         <ToggleIcon onClick={togglePasswordVisibility}>
           {showPassword ? <FaEyeSlash /> : <FaRegEye />}
@@ -111,7 +116,7 @@ const Forms = () => {
       <ContainerLembrarEsqueci>
         <CheckboxWrapper>
           <Checkbox type="checkbox" id="rememberMe" />
-          <label htmlFor="rememberMe">Lembrar minha senha</label>
+          <label htmlFor="rememberMe">Remember</label>
         </CheckboxWrapper>
         <Button
           bgColor="transparent"
@@ -119,12 +124,12 @@ const Forms = () => {
           borderRadius="0.2rem"
           onClick={() => alert("Esqueci minha senha")}
         >
-          Esqueci minha senha
+          Forgot Password?
         </Button>
       </ContainerLembrarEsqueci>
       <ButtonGroup>
         <Button type="submit" width="192px" height="69px">
-          Entrar
+          Login
         </Button>
         <Button
           bgColor="var(--color-background-five)"
@@ -132,7 +137,7 @@ const Forms = () => {
           height="32px"
           fontSize="0.75rem"
         >
-          Cadastrar
+          Sign up
         </Button>
       </ButtonGroup>
     </FormsLogin>

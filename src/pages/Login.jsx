@@ -13,6 +13,10 @@ const ContainerLogin = styled.div`
   background-color: var(--color-background-one);
   padding: 5rem;
   color: var(--color-text-one);
+
+  @media (max-width: 430px) {
+    padding: 1.5rem;
+  }
 `;
 
 const Login = () => {
